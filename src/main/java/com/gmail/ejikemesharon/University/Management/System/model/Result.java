@@ -14,7 +14,7 @@ import java.util.UUID;
 public class Result {
 
     @Id
-    private UUID studentId;
+    private int studentId;
 
     @JsonProperty
     private String firstName;
