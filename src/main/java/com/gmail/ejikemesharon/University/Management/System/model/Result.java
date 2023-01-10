@@ -4,37 +4,33 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
 
-import javax.persistence.ManyToMany;
-import java.util.List;
+import javax.persistence.Id;
 import java.util.UUID;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Student {
+public class Result {
 
     @Id
-    private int studentId;
+    private UUID studentId;
 
     @JsonProperty
-    private String name;
+    private String firstName;
 
     @JsonProperty
-    private String email;
+    private String lastName;
 
     @JsonProperty
-    private String department;
+    private String courseTitle;
 
     @JsonProperty
-    private int level;
+    private String courseCode;
 
     @JsonProperty
-    private double cgpa;
+    private char grade;
 
     @JsonProperty
-    @ManyToMany
-    private List<Course> coursesOffered;
-
+    private int score;
 }

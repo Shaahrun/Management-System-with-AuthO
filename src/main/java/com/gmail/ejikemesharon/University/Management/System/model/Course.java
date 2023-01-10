@@ -16,7 +16,7 @@ import java.util.List;
 public class Course {
 
     @Id
-    private int courseCode;
+    private String courseCode;
 
     @JsonProperty
     private String courseTitle;
