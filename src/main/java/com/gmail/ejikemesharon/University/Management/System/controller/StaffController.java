@@ -23,22 +23,26 @@ public class StaffController {
     }
 
     @GetMapping
+    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<Staff>> getAllStaff() {
         List<Staff> allStaff = staffService.getAllStaff();
         return new ResponseEntity<>(allStaff, HttpStatus.OK);
     }
 
     @PostMapping("/create")
+    @ResponseStatus(HttpStatus.CREATED)
     public void createStaffAccount(@RequestBody Staff staff) {
         staffService.createStaffAccount(staff);
     }
 
     @PutMapping("/update/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public void updateStaffSalary(@PathVariable Long staffId, @RequestBody int salary) {
         staffService.updateStaffSalary(staffId, salary);
     }
 
     @GetMapping("/{department}")
+    @ResponseStatus(HttpStatus.FOUND)
     public ResponseEntity<List<Staff>> getStaffByDept(@PathVariable String department) {
         List<Staff> deptStaff = staffService.getStaffByDept(department);
         return new ResponseEntity<>(deptStaff, HttpStatus.OK);

@@ -1,40 +1,64 @@
 package com.gmail.ejikemesharon.University.Management.System.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
+import lombok.*;
+import org.hibernate.Hibernate;
 
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.util.List;
-import java.util.UUID;
+import java.util.Objects;
 
-@Data
+@Entity
+@Table(name = "student")
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 @AllArgsConstructor
-@NoArgsConstructor
+// @NoArgsConstructor
 public class Student {
 
     @Id
+    @Column
     private int studentId;
 
     @JsonProperty
+    @Column
     private String name;
 
     @JsonProperty
+    @Column
     private String email;
 
     @JsonProperty
+    @Column
     private String department;
 
     @JsonProperty
-    private int level;
+    @Column
+    private int currentLevel;
 
     @JsonProperty
+    @Column
     private double cgpa;
 
     @JsonProperty
     @ManyToMany
+    @JoinColumn(name = "course_codes", referencedColumnName = "course_code")
+    @ToString.Exclude
     private List<Course> coursesOffered;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Student student = (Student) o;
+
+        return Objects.equals(studentId, student.studentId);
+    }
+
+    @Override
+    public int hashCode() {
+        return 1128121276;
+    }
 }

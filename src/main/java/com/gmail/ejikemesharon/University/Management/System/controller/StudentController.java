@@ -24,28 +24,33 @@ public class StudentController {
     }
 
     @PostMapping("/create")
+    @ResponseStatus(HttpStatus.CREATED)
     public void createStudentAccount(@RequestBody Student student) {
         studentService.createStudentAccount(student);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/student/{id}")
+    @ResponseStatus(HttpStatus.FOUND)
     public ResponseEntity<Student> getStudent(@PathVariable int id) {
         Student student = studentService.findById(id);
         return new ResponseEntity<>(student, HttpStatus.OK);
     }
 
     @GetMapping("/{department}")
+    @ResponseStatus(HttpStatus.FOUND)
     public ResponseEntity<List<Student>> getStudentsByDepartment(@PathVariable String department) {
         List<Student> studentsInDepartment = studentService.findByDepartment(department);
         return new ResponseEntity<>(studentsInDepartment, HttpStatus.OK);
     }
 
     @PutMapping("/update/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public void updateCgpa(@PathVariable int id, @RequestBody double currentCgpa) {
         studentService.updateStudentCgpa(id, currentCgpa);
     }
 
     @GetMapping("/result/{id}")
+    @ResponseStatus(HttpStatus.FOUND)
     public ResponseEntity<List<Result>> getStudentResults(@PathVariable int id) {
         List<Result> studentResults = studentService.getResults(id);
         return new ResponseEntity<>(studentResults, HttpStatus.OK);

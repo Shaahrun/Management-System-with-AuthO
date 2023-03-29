@@ -1,7 +1,5 @@
 package com.gmail.ejikemesharon.University.Management.System.service;
 
-
-import com.gmail.ejikemesharon.University.Management.System.model.Course;
 import com.gmail.ejikemesharon.University.Management.System.model.Result;
 import com.gmail.ejikemesharon.University.Management.System.model.Student;
 import com.gmail.ejikemesharon.University.Management.System.repository.StudentRepository;
@@ -9,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class StudentService {
@@ -32,7 +28,7 @@ public class StudentService {
       }
 
       public Student findById(int studentId) {
-          return studentRepository.findById(studentId);
+          return studentRepository.findByStudentId(studentId);
       }
 
       public List<Student> findByDepartment(String department) {
